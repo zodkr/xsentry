@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Sentry;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Sentry\HttpClient\HttpClientInterface;
 use Sentry\Integration\ErrorListenerIntegration;
 use Sentry\Integration\IntegrationInterface;
@@ -129,6 +130,8 @@ final class Options
      * precedence.
      *
      * @param bool|null $enableTracing Boolean if tracing should be enabled or not
+     *
+     * @deprecated since version 4.7. To be removed in version 5.0
      */
     public function setEnableTracing(?bool $enableTracing): self
     {
@@ -143,6 +146,8 @@ final class Options
      * Gets if tracing is enabled or not.
      *
      * @return bool|null If the option `enable_tracing` is set or not
+     *
+     * @deprecated since version 4.7. To be removed in version 5.0
      */
     public function getEnableTracing(): ?bool
     {
@@ -219,6 +224,8 @@ final class Options
 
     /**
      * Gets whether a metric has their code location attached.
+     *
+     * @deprecated Metrics are no longer supported. Metrics API is a no-op and will be removed in 5.x.
      */
     public function shouldAttachMetricCodeLocations(): bool
     {
@@ -227,6 +234,8 @@ final class Options
 
     /**
      * Sets whether a metric will have their code location attached.
+     *
+     * @deprecated Metrics are no longer supported. Metrics API is a no-op and will be removed in 5.x.
      */
     public function setAttachMetricCodeLocations(bool $enable): self
     {
@@ -335,6 +344,14 @@ final class Options
     public function getLogger(): ?LoggerInterface
     {
         return $this->options['logger'];
+    }
+
+    /**
+     * Helper to always get a logger instance even if it was not set.
+     */
+    public function getLoggerOrNullLogger(): LoggerInterface
+    {
+        return $this->getLogger() ?? new NullLogger();
     }
 
     /**
@@ -568,6 +585,8 @@ final class Options
      * If `null` is returned it won't be sent.
      *
      * @psalm-return callable(Event, ?EventHint): ?Event
+     *
+     * @deprecated Metrics are no longer supported. Metrics API is a no-op and will be removed in 5.x.
      */
     public function getBeforeSendMetricsCallback(): callable
     {
@@ -581,6 +600,8 @@ final class Options
      * @param callable $callback The callable
      *
      * @psalm-param callable(Event, ?EventHint): ?Event $callback
+     *
+     * @deprecated Metrics are no longer supported. Metrics API is a no-op and will be removed in 5.x.
      */
     public function setBeforeSendMetricsCallback(callable $callback): self
     {
@@ -929,6 +950,20 @@ final class Options
         return $this;
     }
 
+    public function getHttpSslNativeCa(): bool
+    {
+        return $this->options['http_ssl_native_ca'];
+    }
+
+    public function setHttpSslNativeCa(bool $httpSslNativeCa): self
+    {
+        $options = array_merge($this->options, ['http_ssl_native_ca' => $httpSslNativeCa]);
+
+        $this->options = $this->resolver->resolve($options);
+
+        return $this;
+    }
+
     /**
      * Returns whether the requests should be compressed using GZIP or not.
      */
@@ -1085,13 +1120,16 @@ final class Options
             'traces_sampler' => null,
             'profiles_sample_rate' => null,
             'attach_stacktrace' => false,
+            /**
+             * @deprecated Metrics are no longer supported. Metrics API is a no-op and will be removed in 5.x.
+             */
             'attach_metric_code_locations' => false,
             'context_lines' => 5,
             'environment' => $_SERVER['SENTRY_ENVIRONMENT'] ?? null,
             'logger' => null,
             'spotlight' => false,
             'spotlight_url' => 'http://localhost:8969',
-            'release' => $_SERVER['SENTRY_RELEASE'] ?? null,
+            'release' => $_SERVER['SENTRY_RELEASE'] ?? $_SERVER['AWS_LAMBDA_FUNCTION_VERSION'] ?? null,
             'dsn' => $_SERVER['SENTRY_DSN'] ?? null,
             'server_name' => gethostname(),
             'ignore_exceptions' => [],
@@ -1105,8 +1143,11 @@ final class Options
             'before_send_check_in' => static function (Event $checkIn): Event {
                 return $checkIn;
             },
-            'before_send_metrics' => static function (Event $metrics): Event {
-                return $metrics;
+            /**
+             * @deprecated Metrics are no longer supported. Metrics API is a no-op and will be removed in 5.x.
+             */
+            'before_send_metrics' => static function (Event $metrics): ?Event {
+                return null;
             },
             'trace_propagation_targets' => null,
             'tags' => [],
@@ -1126,6 +1167,7 @@ final class Options
             'http_connect_timeout' => self::DEFAULT_HTTP_CONNECT_TIMEOUT,
             'http_timeout' => self::DEFAULT_HTTP_TIMEOUT,
             'http_ssl_verify_peer' => true,
+            'http_ssl_native_ca' => false,
             'http_compression' => true,
             'capture_silenced_errors' => false,
             'max_request_body_size' => 'medium',

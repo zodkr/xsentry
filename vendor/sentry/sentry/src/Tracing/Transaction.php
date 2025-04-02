@@ -119,7 +119,7 @@ final class Transaction extends Span
         return $this;
     }
 
-    public function initProfiler(): self
+    public function initProfiler(): Profiler
     {
         if ($this->profiler === null) {
             $client = $this->hub->getClient();
@@ -128,7 +128,7 @@ final class Transaction extends Span
             $this->profiler = new Profiler($options);
         }
 
-        return $this;
+        return $this->profiler;
     }
 
     public function getProfiler(): ?Profiler
@@ -188,10 +188,6 @@ final class Transaction extends Span
             if ($profile !== null) {
                 $event->setSdkMetadata('profile', $profile);
             }
-        }
-
-        if (!empty($this->getMetricsSummary())) {
-            $event->setMetricsSummary($this->getMetricsSummary());
         }
 
         return $this->hub->captureEvent($event);

@@ -9,7 +9,6 @@ use Sentry\EventType;
 use Sentry\Options;
 use Sentry\Serializer\EnvelopItems\CheckInItem;
 use Sentry\Serializer\EnvelopItems\EventItem;
-use Sentry\Serializer\EnvelopItems\MetricsItem;
 use Sentry\Serializer\EnvelopItems\ProfileItem;
 use Sentry\Serializer\EnvelopItems\TransactionItem;
 use Sentry\Tracing\DynamicSamplingContext;
@@ -69,7 +68,7 @@ final class PayloadSerializer implements PayloadSerializerInterface
                 if ($event->getSdkMetadata('profile') !== null) {
                     $profileItem = ProfileItem::toEnvelopeItem($event);
                     if ($profileItem !== '') {
-                        $items = sprintf("%s\n%s", $transactionItem, $profileItem);
+                        $items = \sprintf("%s\n%s", $transactionItem, $profileItem);
                         break;
                     }
                 }
@@ -78,11 +77,8 @@ final class PayloadSerializer implements PayloadSerializerInterface
             case EventType::checkIn():
                 $items = CheckInItem::toEnvelopeItem($event);
                 break;
-            case EventType::metrics():
-                $items = MetricsItem::toEnvelopeItem($event);
-                break;
         }
 
-        return sprintf("%s\n%s", JSON::encode($envelopeHeader), $items);
+        return \sprintf("%s\n%s", JSON::encode($envelopeHeader), $items);
     }
 }

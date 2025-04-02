@@ -19,11 +19,12 @@ class DebugFileLogger extends AbstractLogger
     }
 
     /**
-     * @param mixed   $level
-     * @param mixed[] $context
+     * @param mixed              $level
+     * @param string|\Stringable $message
+     * @param mixed[]            $context
      */
     public function log($level, $message, array $context = []): void
     {
-        file_put_contents($this->filePath, sprintf("sentry/sentry: [%s] %s\n", $level, (string) $message), \FILE_APPEND);
+        file_put_contents($this->filePath, \sprintf("sentry/sentry: [%s] %s\n", $level, (string) $message), \FILE_APPEND);
     }
 }

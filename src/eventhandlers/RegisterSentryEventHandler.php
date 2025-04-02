@@ -27,7 +27,7 @@ class RegisterSentryEventHandler extends BaseModule
 	 */
 	public function handle(): bool
 	{
-		[ 'backend' => $backend, 'frontend' => $frontend ] = $this->getSentryDsnConfigurations();
+		[ 'backend' => $backend, 'frontend' => $frontend ] = $this->getConfiguredSentryDsn();
 
 		if ($backend && $backend['enabled'] === true && $backend['dsn']) {
 			$this->registerBackendSentry($backend['dsn']);

@@ -1,89 +1,178 @@
 <?php return array(
     'root' => array(
         'name' => 'rx-apps/xsentry',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'e7c38509bf82afa05589230f0eaa0ae9e7d2763d',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'rhymix-module',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'guzzlehttp/psr7' => array(
-            'pretty_version' => '2.6.2',
-            'version' => '2.6.2.0',
-            'reference' => '45b30f99ac27b5ca93cb4831afe16285f57b8221',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../guzzlehttp/psr7',
-            'aliases' => array(),
+        'bordoni/phpass' => array(
             'dev_requirement' => false,
+            'replaced' => array(
+                0 => '0.3.6',
+            ),
+        ),
+        'composer/ca-bundle' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'coolsms/php-sdk' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.*',
+            ),
+        ),
+        'doctrine/lexer' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.*',
+            ),
+        ),
+        'egulias/email-validator' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '3.2.*',
+            ),
+        ),
+        'enshrined/svg-sanitize' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '0.*',
+            ),
+        ),
+        'ezyang/htmlpurifier' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '4.18.*',
+            ),
+        ),
+        'firebase/php-jwt' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '6.4.0',
+            ),
+        ),
+        'google/auth' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.26.*',
+            ),
+        ),
+        'guzzlehttp/guzzle' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '7.9.*',
+            ),
+        ),
+        'guzzlehttp/psr7' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.7.*',
+            ),
+        ),
+        'jbbcode/jbbcode' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.4.*',
+            ),
         ),
         'jean85/pretty-package-versions' => array(
-            'pretty_version' => '2.0.6',
-            'version' => '2.0.6.0',
-            'reference' => 'f9fdd29ad8e6d024f52678b570e5593759b550b4',
+            'pretty_version' => '2.1.1',
+            'version' => '2.1.1.0',
+            'reference' => '4d7aa5dab42e2a76d99559706022885de0e18e1a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../jean85/pretty-package-versions',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'psr/http-factory' => array(
-            'pretty_version' => '1.0.2',
-            'version' => '1.0.2.0',
-            'reference' => 'e616d01114759c4c489f93b099585439f795fe35',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/http-factory',
-            'aliases' => array(),
+        'leafo/lessphp' => array(
             'dev_requirement' => false,
-        ),
-        'psr/http-factory-implementation' => array(
-            'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0',
+            'replaced' => array(
+                0 => 'dev-master',
             ),
         ),
-        'psr/http-message' => array(
-            'pretty_version' => '2.0',
-            'version' => '2.0.0.0',
-            'reference' => '402d35bcb92c70c026d1a6a9883f06b2ead23d71',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/http-message',
-            'aliases' => array(),
+        'league/html-to-markdown' => array(
             'dev_requirement' => false,
+            'replaced' => array(
+                0 => '5.1.*',
+            ),
         ),
-        'psr/http-message-implementation' => array(
+        'matthiasmullie/minify' => array(
             'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0',
+            'replaced' => array(
+                0 => '1.3.*',
+            ),
+        ),
+        'matthiasmullie/path-converter' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.1.*',
+            ),
+        ),
+        'michelf/php-markdown' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.9.*',
+            ),
+        ),
+        'michelf/php-smartypants' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.8.*',
+            ),
+        ),
+        'psr/cache' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.0.1',
             ),
         ),
         'psr/log' => array(
-            'pretty_version' => '3.0.0',
-            'version' => '3.0.0.0',
-            'reference' => 'fe5ea303b0887d5caefd3d431c3e61ad47037001',
+            'pretty_version' => '3.0.2',
+            'version' => '3.0.2.0',
+            'reference' => 'f16e1d5863e37f8d8c2a01719f5b34baa2b714d3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/log',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'ralouphie/getallheaders' => array(
-            'pretty_version' => '3.0.3',
-            'version' => '3.0.3.0',
-            'reference' => '120b605dfeb996808c31b6477290a714d356e822',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../ralouphie/getallheaders',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'rx-apps/xsentry' => array(
+        'rhymix/composer-stub' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'e7c38509bf82afa05589230f0eaa0ae9e7d2763d',
+            'reference' => 'c7d4fcec98e99d9e5213c5fc96d35d406e6d0848',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rhymix/composer-stub',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'rmccue/requests' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.8.*',
+            ),
+        ),
+        'rx-apps/xsentry' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'rhymix-module',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'scssphp/scssphp' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '1.13.*',
+            ),
         ),
         'sentry/sdk' => array(
             'pretty_version' => '4.0.0',
@@ -95,31 +184,40 @@
             'dev_requirement' => false,
         ),
         'sentry/sentry' => array(
-            'pretty_version' => '4.6.1',
-            'version' => '4.6.1.0',
-            'reference' => '5a94184175e5830b589bf923da8c9c3af2c0f409',
+            'pretty_version' => '4.10.0',
+            'version' => '4.10.0.0',
+            'reference' => '2af937d47d8aadb8dab0b1d7b9557e495dd12856',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sentry/sentry',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'symfony/deprecation-contracts' => array(
-            'pretty_version' => 'v3.4.0',
-            'version' => '3.4.0.0',
-            'reference' => '7c3aff79d10325257a001fcf92d991f24fc967cf',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
-            'aliases' => array(),
+        'swiftmailer/swiftmailer' => array(
             'dev_requirement' => false,
+            'replaced' => array(
+                0 => '6.3.0',
+            ),
+        ),
+        'symfony/deprecation-contracts' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.5.*',
+            ),
         ),
         'symfony/options-resolver' => array(
-            'pretty_version' => 'v7.0.0',
-            'version' => '7.0.0.0',
-            'reference' => '700ff4096e346f54cb628ea650767c8130f1001f',
+            'pretty_version' => 'v7.2.0',
+            'version' => '7.2.0.0',
+            'reference' => '7da8fbac9dcfef75ffc212235d76b2754ce0cf50',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/options-resolver',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'true/punycode' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '2.*',
+            ),
         ),
     ),
 );

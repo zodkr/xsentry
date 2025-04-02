@@ -261,7 +261,7 @@ abstract class AbstractSerializer
         }
 
         try {
-            if (\is_callable($value)) {
+            if (@\is_callable($value)) {
                 return $this->serializeCallable($value);
             }
         } catch (\Throwable $exception) {
@@ -280,19 +280,19 @@ abstract class AbstractSerializer
      */
     protected function serializeCallable($callable): string
     {
-        if (\is_string($callable) && !\function_exists($callable)) {
+        if (\is_string($callable)) {
             return $callable;
         }
 
         if (!\is_callable($callable)) {
-            throw new \InvalidArgumentException(sprintf('Expecting callable, got %s', \is_object($callable) ? \get_class($callable) : \gettype($callable)));
+            throw new \InvalidArgumentException(\sprintf('Expecting callable, got %s', \is_object($callable) ? \get_class($callable) : \gettype($callable)));
         }
 
         try {
             if (\is_array($callable)) {
                 $reflection = new \ReflectionMethod($callable[0], $callable[1]);
                 $class = $reflection->getDeclaringClass();
-            } elseif ($callable instanceof \Closure || (\is_string($callable) && \function_exists($callable))) {
+            } elseif ($callable instanceof \Closure) {
                 $reflection = new \ReflectionFunction($callable);
                 $class = null;
             } elseif (\is_object($callable) && method_exists($callable, '__invoke')) {

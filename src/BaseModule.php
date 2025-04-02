@@ -12,14 +12,14 @@ class BaseModule extends ModuleObject
 	/**
 	 * @const string SENTRY_DSN_CONFIG_PATH Configuration file path.
 	 */
-	protected const SENTRY_DSN_CONFIG_PATH = RX_BASEDIR . 'files/config/xsentry.php';
+	protected const SENTRY_DSN_CONFIG_PATH = RX_BASEDIR . 'files/config/sentry.php';
 
 	/**
 	 * Get configured sentry DSNs.
 	 *
 	 * @return array{backend: array{enabled: bool, dsn: string}, frontend: array{enabled: bool, dsn: string}}
 	 */
-	protected function getSentryDsnConfigurations(): array
+	protected function getConfiguredSentryDsn(): array
 	{
 		if (!file_exists(self::SENTRY_DSN_CONFIG_PATH)) {
 			return [
@@ -37,7 +37,7 @@ class BaseModule extends ModuleObject
 	}
 
 	/**
-	 * Save sentry DSN configurations into SENTRY_DSN_CONFIG_PATH.
+	 * Set configured sentry DSNs and save into SENTRY_DSN_CONFIG_PATH.
 	 *
 	 * @param bool   $backendEnabled True if Sentry for backend should be enabled.
 	 * @param string $backendDsn  Sentry DSN for backend (PHP).
@@ -46,7 +46,7 @@ class BaseModule extends ModuleObject
 	 *
 	 * @return bool
 	 */
-	protected function setSentryDsnConfigurations(
+	protected function setConfiguredSentryDsn(
 		bool $backendEnabled, string $backendDsn, bool $frontendEnabled, string $frontendDsn
 	): bool {
 		$config = [
@@ -69,7 +69,7 @@ class BaseModule extends ModuleObject
 			return false;
 		}
 
-		$configuredDsn = $this->getSentryDsnConfigurations();
+		$configuredDsn = $this->getConfiguredSentryDsn();
 		return json_encode($configuredDsn) === json_encode($config);
 	}
 }

@@ -1,5 +1,95 @@
 # CHANGELOG
 
+## 4.10.0
+
+The Sentry SDK team is happy to announce the immediate availability of Sentry PHP SDK v4.10.0.
+
+### Features
+
+- The SDK was updated to support PHP 8.4 [(#1760)](https://github.com/getsentry/sentry-php/pull/1760)
+- Expose a new `http_ssl_native_ca` option to tell the HTTP client to use the operating system's native CA store for certificate verification [(#1766)](https://github.com/getsentry/sentry-php/pull/1766)
+
+### Bug Fixes
+
+- Fix the `http_timeout` & `http_connect_timeout` options, which now also work with sub second values [(#1785)](https://github.com/getsentry/sentry-php/pull/1785)
+
+### Misc
+
+- HTTP breadcrumbs created by the `GuzzleTracingMiddleware` are now set to a warning status for `4xx` responses and an error status for `5xx` responses [(#1773)](https://github.com/getsentry/sentry-php/pull/1773)
+- All public Metrics APIs are now no-op, intneral APIs were removed [(#1786)](https://github.com/getsentry/sentry-php/pull/1786)
+
+## 4.9.0
+
+The Sentry SDK team is happy to announce the immediate availability of Sentry PHP SDK v4.9.0.
+
+### Features
+
+- Allow retrieving a single piece of data from the span by it’s key [(#1767)](https://github.com/getsentry/sentry-php/pull/1767)
+
+  ```php
+  \Sentry\SentrySdk::getCurrentHub()->getSpan()?->setData([
+      'failure' => $span->getData('failure', 0) + 1,
+  ]);
+  ```
+
+- Add span trace origin [(#1769)](https://github.com/getsentry/sentry-php/pull/1769)
+
+## 4.8.1
+
+The Sentry SDK team is happy to announce the immediate availability of Sentry PHP SDK v4.8.1.
+
+### Bug Fixes
+
+- Guard against empty `REMOTE_ADDR` [(#1751)](https://github.com/getsentry/sentry-php/pull/1751)
+
+## 4.8.0
+
+The Sentry SDK team is happy to announce the immediate availability of Sentry PHP SDK v4.8.0.
+
+### Features
+
+- Add timing span when emiting a timing metric [(#1717)](https://github.com/getsentry/sentry-php/pull/1717)
+
+  ```php
+  use function Sentry\metrics;
+
+  // This will now both emit a distribution metric and a span with the "expensive-operation" key
+  metrics()->timing(
+      key: 'expensive-operation',
+      callback: fn() => doExpensiveOperation(),
+  );
+  ```
+
+### Bug Fixes
+
+- Fix missing data on HTTP spans [(#1735)](https://github.com/getsentry/sentry-php/pull/1735)
+- Test span sampled status before creating child spans [(#1740)](https://github.com/getsentry/sentry-php/pull/1740)
+
+### Misc
+
+- Implement fast path for ignoring errors [(#1737)](https://github.com/getsentry/sentry-php/pull/1737)
+- Add array shape for better autocomplete of `Sentry\init` function [(#1738)](https://github.com/getsentry/sentry-php/pull/1738)
+- Represent callable strings as strings [(#1741)](https://github.com/getsentry/sentry-php/pull/1741)
+- Use `AWS_LAMBDA_FUNCTION_VERSION` environment variable for release if available [(#1742)](https://github.com/getsentry/sentry-php/pull/1742)
+
+## 4.7.0
+
+The Sentry SDK team is happy to announce the immediate availability of Sentry PHP SDK v4.7.0.
+
+### Features
+
+- Improve debugging experience by emitting more logs from the SDK [(#1705)](https://github.com/getsentry/sentry-php/pull/1705)
+- Handle `metric_bucket` rate limits [(#1726)](https://github.com/getsentry/sentry-php/pull/1726) & [(#1728)](https://github.com/getsentry/sentry-php/pull/1728)
+
+### Bug Fixes
+
+- Fix deprecation notice when trying to serialize a callable [(#1732)](https://github.com/getsentry/sentry-php/pull/1732)
+
+### Misc
+
+- Deprecated `SpanStatus::resourceExchausted()`. Use `SpanStatus::resourceExhausted()` instead [(#1725)](https://github.com/getsentry/sentry-php/pull/1725)
+- Update metric normalization [(#1729)](https://github.com/getsentry/sentry-php/pull/1729)
+
 ## 4.6.1
 
 The Sentry SDK team is happy to announce the immediate availability of Sentry PHP SDK v4.6.1.

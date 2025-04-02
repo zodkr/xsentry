@@ -8,7 +8,12 @@
       "email": "rxapps@qroffle.com"
     }
   ],
+  "config": {
+    "optimize-autoloader": true,
+    "prepend-autoloader": false
+  },
   "require": {
+    "rhymix/composer-stub": "dev-master",
     "sentry/sdk": "^4.0.0"
   }
 }

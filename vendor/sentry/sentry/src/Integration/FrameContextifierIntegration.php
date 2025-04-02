@@ -66,13 +66,6 @@ final class FrameContextifierIntegration implements IntegrationInterface
                 }
             }
 
-            foreach ($event->getMetrics() as $metric) {
-                if ($metric->hasCodeLocation()) {
-                    $frame = $metric->getCodeLocation();
-                    $integration->addContextToStacktraceFrame($maxContextLines, $frame);
-                }
-            }
-
             return $event;
         });
     }
@@ -165,7 +158,7 @@ final class FrameContextifierIntegration implements IntegrationInterface
             }
         } catch (\Throwable $exception) {
             $this->logger->warning(
-                sprintf('Failed to get the source code excerpt for the file "%s".', $filePath),
+                \sprintf('Failed to get the source code excerpt for the file "%s".', $filePath),
                 ['exception' => $exception]
             );
         }
